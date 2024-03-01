@@ -1,2 +1,3 @@
-# glados-node
-A NodeJS implementation of my glados voice assistant project
+# glados-core
+
+Core API for the GLaDOS voice assistant

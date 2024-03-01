@@ -1,5 +1,5 @@
 {
-  "name": "glados-node",
+  "name": "glados-core",
   "version": "1.0.0",
   "description": "GLaDOS Backend API",
   "main": "src/server.ts",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IllusiveBagel/glados-node.git"
+    "url": "git+https://github.com/IllusiveBagel/glados-core.git"
   },
   "author": "Logan Young",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/IllusiveBagel/glados-node/issues"
+    "url": "https://github.com/IllusiveBagel/glados-core/issues"
   },
-  "homepage": "https://github.com/IllusiveBagel/glados-node#readme",
+  "homepage": "https://github.com/IllusiveBagel/glados-core#readme",
   "dependencies": {
     "@types/axios": "^0.14.0",
     "@types/express": "^4.17.21",
