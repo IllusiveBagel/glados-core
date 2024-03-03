@@ -3,6 +3,6 @@ import controller from '../controllers/command.controller';
 
 const router = express.Router();
 
-router.get('/', controller.processCommand);
+router.post('/', controller.processCommand);
 
 export default router;
