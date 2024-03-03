@@ -9,7 +9,7 @@ const phrases = JSON.parse(fs.readFileSync("src/data/phrases.json", "utf-8"));
 const processCommand = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const command: string = req.body.command.toLowerCase();
   let text;

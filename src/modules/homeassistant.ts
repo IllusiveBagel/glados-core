@@ -54,7 +54,7 @@ const lightControl = async (command: string) => {
     switch (error.response.status) {
       case 401:
         console.log(
-          "\x1b[31mERROR:\x1b[0m Home Assistant rejected access token."
+          "\x1b[31mERROR:\x1b[0m Home Assistant rejected access token.",
         );
         return "It looks like my home automation core has rejected my crentials.";
       case 404:
@@ -62,7 +62,7 @@ const lightControl = async (command: string) => {
         return "My home automation core has no idea what you just requested it.";
       case 500:
         console.log(
-          "\x1b[31mERROR:\x1b[0m Home Assistant internal server error."
+          "\x1b[31mERROR:\x1b[0m Home Assistant internal server error.",
         );
         return "My home automation core encountered an internal server error.";
     }
