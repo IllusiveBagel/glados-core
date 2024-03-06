@@ -1,32 +1,26 @@
 import { Request, Response, NextFunction } from "express";
-import fs from "fs";
 import axios from "axios";
-import commandHandlers from "../constants/commandHandlers";
-
-const phrases = JSON.parse(fs.readFileSync("src/data/phrases.json", "utf-8"));
+import openai from "../modules/openai";
 
 const processCommand = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const command: string = req.body.command.toLowerCase();
-  let text;
-
-  const handler = commandHandlers.find((handler) => handler.match(command));
-
-  if (handler) {
-    text = await handler.handle(command);
-  } else {
-    text =
-      phrases.missingCommand[
-        Math.floor(Math.random() * phrases.missingCommand.length)
-      ];
+  if (!process.env.TTS_URL || process.env.TTS_URL.trim() === "") {
+    throw new Error("TTS_URL environment variable is not set or is empty");
   }
 
-  const response = await axios.get(process.env.TTS_URL + text, {
-    responseType: "stream",
-  });
+  const sendCommand = await openai.processCommand(
+    req.body.command.toLowerCase()
+  );
+
+  const response = await axios.get(
+    process.env.TTS_URL + sendCommand?.[0]?.message?.content,
+    {
+      responseType: "stream",
+    }
+  );
   res.setHeader("Content-Type", "audio/wav");
   response.data.pipe(res);
 };
