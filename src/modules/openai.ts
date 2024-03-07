@@ -84,6 +84,8 @@ const processCommand = async (command: string) => {
     });
 
     return secondResponse.choices;
+  } else {
+    return response.choices;
   }
 };
 
