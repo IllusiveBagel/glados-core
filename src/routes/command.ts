@@ -1,8 +1,10 @@
 import express from "express";
-import controller from "../controllers/command.controller";
+import multer from "multer";
+import controller from "../controllers/command.controller.js";
 
 const router = express.Router();
+const upload = multer({ storage: multer.memoryStorage() });
 
-router.post("/", controller.processCommand);
+router.post("/", upload.single("audioData"), controller.processCommand);
 
 export default router;

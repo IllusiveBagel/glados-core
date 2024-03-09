@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "outDir": "./build",
     "rootDir": "./src",
@@ -9,5 +10,8 @@
     "skipLibCheck": true,
     "strict": true
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*"],
+  "ts-node": {
+    "esm": true
+  }
 }

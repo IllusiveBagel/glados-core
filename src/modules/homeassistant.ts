@@ -2,7 +2,7 @@ import axios from "axios";
 
 const changeLightState = async (
   room: string,
-  state: string
+  state: string,
 ): Promise<string> => {
   const url = `${process.env.HOMEASSISTANT_URL}services/light/turn_${state}`;
   const headers = {

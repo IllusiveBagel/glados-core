@@ -1,6 +1,6 @@
 import OpenAI from "openai";
-import homeassistant from "./homeassistant";
-import prompts from "../constants/prompts";
+import homeassistant from "./homeassistant.js";
+import prompts from "../constants/prompts.js";
 
 const openai = new OpenAI({
   apiKey: process.env["OPENAI_API_KEY"],
@@ -67,7 +67,7 @@ const processCommand = async (command: string) => {
       const functionArgs = JSON.parse(toolCall.function.arguments);
       const functionResponse = await functionToCall(
         functionArgs.room,
-        functionArgs.state
+        functionArgs.state,
       );
 
       messages.push({
