@@ -19,13 +19,27 @@ const processCommand = async (command: string) => {
     },
   ];
 
-  const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo-0125",
-    messages: messages,
-    tools: OpenAITools.tools,
-  });
+  const response = await openai.chat.completions
+    .create({
+      model: "gpt-3.5-turbo-0125",
+      messages: messages,
+      tools: OpenAITools.tools,
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-  const responseMessage = response.choices[0].message;
+  let responseMessage;
+  if (response && response.choices) {
+    responseMessage = response.choices[0].message;
+  } else {
+    // Handle the case when response is void or choices property does not exist
+    // For example, you can throw an error or return an empty responseMessage
+    throw new Error("Invalid response from OpenAI");
+  }
 
   const toolCalls = responseMessage.tool_calls;
 
@@ -42,6 +56,7 @@ const processCommand = async (command: string) => {
           functionName as keyof typeof OpenAITools.availableFunctions
         ];
       const functionArgs = JSON.parse(toolCall.function.arguments);
+      console.log(`Calling function ${functionName} with args:`, functionArgs);
       const functionResponse = await functionToCall(functionArgs);
 
       messages.push({

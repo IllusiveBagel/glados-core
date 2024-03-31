@@ -28,7 +28,7 @@ const changeLightState = async ({
 };
 
 const getWeather = async (): Promise<string> => {
-  const url = `${process.env.HOMEASSISTANT_URL}states/weather.home`;
+  const url = `${process.env.HOMEASSISTANT_URL}states/weather.forecast_home`;
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.HOMEASSISTANT_TOKEN}`,
@@ -36,6 +36,7 @@ const getWeather = async (): Promise<string> => {
 
   return await axios.get(url, { headers }).then((response) => {
     if (response.status === 200) {
+      console.log(response.data.state);
       return response.data.state;
     } else {
       return "Failure";

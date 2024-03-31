@@ -28,6 +28,11 @@ const tools: OpenAI.ChatCompletionTool[] = [
       description: "Get the current weather from home assistant",
       parameters: {
         type: "object",
+        properties: {
+          dummy_property: {
+            type: "null",
+          },
+        },
       },
     },
   },
